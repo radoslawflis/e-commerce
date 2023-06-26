@@ -34,10 +34,10 @@ export const signInWithGooglePopup = () =>
 export const db = getFirestore(); //creating database
 
 //storing inside database
-export const createUserDocumentFromAuth = async (
+export async function createUserDocumentFromAuth(
 	userAuth,
 	additionalInfomration = {}
-) => {
+) {
 	if (!userAuth) return;
 
 	const userDocRef = doc(db, 'users', userAuth.uid); //see if thre is existing document reference
@@ -63,7 +63,7 @@ export const createUserDocumentFromAuth = async (
 	}
 
 	return userDocRef;
-};
+}
 //if user data does not exist
 // create/setDocument with data from userAuth in my collection (set it using userSnapshot)
 
