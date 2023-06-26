@@ -1,9 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
-	signInWithRedirect,
 	signInWithPopup,
+	signInWithRedirect,
 	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
 } from 'firebase/auth';
 
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
@@ -29,13 +30,16 @@ googleProvider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () =>
 	signInWithPopup(auth, googleProvider);
-// export const signInWithGoogleRedirect = () =>
-// 	signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore(); //creating database
 
 //storing inside database
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+	userAuth,
+	additionalInfomration = {}
+) => {
+	if (!userAuth) return;
+
 	const userDocRef = doc(db, 'users', userAuth.uid); //see if thre is existing document reference
 	console.log(userDocRef);
 
@@ -47,7 +51,12 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 		const { displayName, email } = userAuth; //destructuring this obj to use it in database
 		const createAt = new Date();
 		try {
-			await setDoc(userDocRef, { displayName, email, createAt }); //create new document in the colection, data we wanna set it with
+			await setDoc(userDocRef, {
+				displayName,
+				email,
+				createAt,
+				...additionalInfomration,
+			}); //create new document in the colection, data we wanna set it with
 		} catch (error) {
 			console.log('error creating the user', error.message);
 		}
@@ -60,3 +69,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 
 //if user data exists
 //return userDocRef
+export const creatAuthUserWithEmailandPassword = async (email, password) => {
+	if (!email || !password) return;
+
+	return await createUserWithEmailAndPassword(auth, email, password);
+};
