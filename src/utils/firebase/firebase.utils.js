@@ -6,6 +6,8 @@ import {
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
+	signOut,
+	onAuthStateChanged,
 } from 'firebase/auth';
 
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
@@ -37,7 +39,7 @@ export const db = getFirestore(); //creating database
 //storing inside database
 export async function createUserDocumentFromAuth(
 	userAuth,
-	additionalInfomration = {}
+	additionalInformation = {}
 ) {
 	if (!userAuth) return;
 
@@ -56,7 +58,7 @@ export async function createUserDocumentFromAuth(
 				displayName,
 				email,
 				createAt,
-				...additionalInfomration,
+				...additionalInformation,
 			}); //create new document in the colection, data we wanna set it with
 		} catch (error) {
 			console.log('error creating the user', error.message);
@@ -81,3 +83,5 @@ export const signInAuthUserWithEmailandPassword = async (email, password) => {
 
 	return await signInWithEmailAndPassword(auth, email, password);
 };
+
+export const signOutUser = async () => signOut(auth);
