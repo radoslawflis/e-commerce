@@ -3,7 +3,6 @@ import { createContext, useState, useEffect } from 'react';
 import {
 	onAuthStateChangedListener,
 	createUserDocumentFromAuth,
-	auth,
 } from '../utils/firebase/firebase.utils';
 
 //as the actual value you want to access
