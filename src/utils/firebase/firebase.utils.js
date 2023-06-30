@@ -10,7 +10,16 @@ import {
 	onAuthStateChanged,
 } from 'firebase/auth';
 
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+	getFirestore,
+	doc,
+	getDoc,
+	setDoc,
+	collection,
+	writeBatch,
+	query,
+	getDocs,
+} from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -35,6 +44,59 @@ export const signInWithGooglePopup = () =>
 	signInWithPopup(auth, googleProvider);
 
 export const db = getFirestore(); //creating database
+
+//creating collection
+export async function addCollectionAndDocuments(
+	collectionKey,
+	objectsToAdd,
+	field = 'title'
+) {
+	const collectionRef = collection(db, collectionKey); //specific collection with category
+	const batch = writeBatch(db); //return a batch and pass db we wanna make on
+
+	objectsToAdd.forEach((object) => {
+		const docRef = doc(collectionRef, object[field].toLowerCase()); //collectionRef tells directly which db we use
+		batch.set(docRef, object); //set location with value of object itself
+	}); //create each object as a document in a collection
+
+	await batch.commit(); //firing batch
+	console.log('done');
+}
+
+export async function getCategoriesAndDocuments() {
+	const collectionRef = collection(db, 'categories');
+	const q = query(collectionRef); //generate query of collectionRef
+
+	const querySnapshot = await getDocs(q); //data itself
+	//querySnapshots.docs give access to all documents inside, snapshots are data itself
+	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+		const { title, items } = docSnapshot.data();
+		acc[title.toLowerCase()] = items;
+		return acc;
+	}, {});
+
+	return categoryMap;
+}
+
+/*
+{
+	hats: {
+		title: 'Hats',
+		items: [
+			{},
+			{}
+		]
+	},
+	sneakers: {
+		title: 'Hats',
+		items: [
+			{},
+			{}
+		]
+	},
+}
+
+*/
 
 //storing inside database
 export async function createUserDocumentFromAuth(
