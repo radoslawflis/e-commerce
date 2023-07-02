@@ -15,14 +15,19 @@ function Category() {
 	useEffect(() => {
 		setProducts(categoriesMap[category]);
 	}, [categoriesMap, category]); //set products only when CategoriesMap or categories changes, not with every rendering
-	console.log('products', products);
+
 	return (
-		<div className='category-container'>
-			{products &&
-				products.map((product) => {
-					return <ProductCard key={product.id} product={product} />;
-				})}
-		</div>
+		<>
+			<h2 className='category-title'>{category.toUpperCase()}</h2>
+			<div className='category-container'>
+				{products &&
+					products.map((product) => {
+						return (
+							<ProductCard key={product.id} product={product} />
+						);
+					})}
+			</div>
+		</>
 	);
 }
 
