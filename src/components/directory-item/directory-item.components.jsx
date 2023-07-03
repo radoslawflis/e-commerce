@@ -14,7 +14,7 @@ function DirectoryItem({ category }) {
 
 	return (
 		<DirectoryItemContainer onClick={onNavigateHandler}>
-			<BackgroundImage imageUrl={imageUrl} />
+			<BackgroundImage style={{ backgroundImage: `url(${imageUrl})` }} />
 			<Body>
 				<h2>{title}</h2>
 				<p>Shop Now</p>
