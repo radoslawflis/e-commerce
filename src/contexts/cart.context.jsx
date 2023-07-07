@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect, useReducer } from 'react';
+import { createContext, useReducer } from 'react';
+
+import { createAction } from '../utils/firebase/reducer/reducer.utils';
 
 const addCartItem = (cartItems, productToAdd) => {
 	const existingCartItem = cartItems.find(
@@ -112,10 +114,7 @@ export const CartProvider = ({ children }) => {
 	}
 
 	function setIsCartOpen(bool) {
-		dispatch({
-			type: CART_ACTION_TYPES.SET_IS_CART_OPEN,
-			payload: bool,
-		});
+		dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool));
 	}
 
 	const addItemToCart = (productToAdd) => {
