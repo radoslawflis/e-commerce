@@ -35,6 +35,7 @@ const firebaseConfig = {
 const firebaseaApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
+
 googleProvider.setCustomParameters({
 	prompt: 'select_account',
 });
