@@ -9,12 +9,14 @@ import { CategoryContainer, CategoryTitle } from './category.styles';
 
 function Category() {
 	const { category } = useParams(); //accessing variable from url
+	console.log('render/re-rendering category component');
 	const categoriesMap = useSelector(selectCategoriesMap);
 	const [products, setProducts] = useState(categoriesMap[category]);
 
 	useEffect(() => {
+		console.log('effect fired calling setProducts');
 		setProducts(categoriesMap[category]);
-	}, [categoriesMap, category]); //set products only when CategoriesMap or categories changes, not with every rendering
+	}, [category, categoriesMap]); //set products only when CategoriesMap or categories changes, not with every rendering
 
 	return (
 		<>

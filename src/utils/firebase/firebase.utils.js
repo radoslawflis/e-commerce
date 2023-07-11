@@ -70,13 +70,8 @@ export async function getCategoriesAndDocuments() {
 
 	const querySnapshot = await getDocs(q); //data itself
 	//querySnapshots.docs give access to all documents inside, snapshots are data itself
-	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-		const { title, items } = docSnapshot.data();
-		acc[title.toLowerCase()] = items;
-		return acc;
-	}, {});
-
-	return categoryMap;
+	return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+	//return categoriesArray
 }
 
 /*
