@@ -20,7 +20,6 @@ import {
 
 function Navigation() {
 	const currentUser = useSelector(selectCurrentUser);
-	console.log('CURRENTUSER', currentUser);
 	const { isCartOpen } = useContext(CartContext);
 
 	async function signOutHandler() {
