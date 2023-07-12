@@ -122,7 +122,7 @@ export const CartProvider = ({ children }) => {
 		resolvedCartItems(newCartItems);
 	};
 
-	const removeItemToCart = (cartItemToRemove) => {
+	const removeItemFromCart = (cartItemToRemove) => {
 		const newCartItems = removeCartItem(cartItems, cartItemToRemove);
 		resolvedCartItems(newCartItems);
 	};
@@ -136,7 +136,7 @@ export const CartProvider = ({ children }) => {
 		isCartOpen,
 		setIsCartOpen,
 		addItemToCart,
-		removeItemToCart,
+		removeItemFromCart,
 		clearItemFromCart,
 		cartItems,
 		cartCount,
