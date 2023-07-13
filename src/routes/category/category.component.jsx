@@ -9,7 +9,6 @@ import { CategoryContainer, CategoryTitle } from './category.styles';
 
 function Category() {
 	const { category } = useParams(); //accessing variable from url
-	console.log('render/re-rendering category component');
 	const categoriesMap = useSelector(selectCategoriesMap);
 	const [products, setProducts] = useState(categoriesMap[category]);
 
