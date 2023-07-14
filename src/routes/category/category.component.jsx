@@ -13,7 +13,6 @@ function Category() {
 	const [products, setProducts] = useState(categoriesMap[category]);
 
 	useEffect(() => {
-		console.log('effect fired calling setProducts');
 		setProducts(categoriesMap[category]);
 	}, [category, categoriesMap]); //set products only when CategoriesMap or categories changes, not with every rendering
 
