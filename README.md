@@ -15,7 +15,7 @@ E-commerce web shop is an enterprise level React application deployed to product
 
 ## Technologies Used
 
--   Front-end: HTML, CSS, JavaScript, React, React Router
+-   Front-end: HTML, CSS, JavaScript, React, React Router, Redux, Redux-Thunk, Redux-Persist, Redux-Logger
 -   Back-end: Firebase
 -   Database: Firebase
 -   Styling: Styled-components
