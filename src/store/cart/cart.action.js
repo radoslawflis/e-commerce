@@ -45,8 +45,8 @@ const clearCartItem = (cartItems, cartItemToClear) =>
 
 //action creators
 
-export const setIsCartOpen = (bool) => {
-	return createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool);
+export const setIsCartOpen = (boolean) => {
+	return createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
 };
 
 export const addItemToCart = (cartItems, productToAdd) => {
