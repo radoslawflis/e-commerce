@@ -95,10 +95,10 @@ export async function getCategoriesAndDocuments() {
 */
 
 //storing inside database
-export async function createUserDocumentFromAuth(
+export const createUserDocumentFromAuth = async (
 	userAuth,
 	additionalInformation = {}
-) {
+) => {
 	if (!userAuth) return;
 
 	const userDocRef = doc(db, 'users', userAuth.uid); //see if thre is existing document reference
@@ -123,8 +123,8 @@ export async function createUserDocumentFromAuth(
 		}
 	}
 
-	return userDocRef;
-}
+	return userSnapshot;
+};
 //if user data does not exist
 // create/setDocument with data from userAuth in my collection (set it using userSnapshot)
 
