@@ -32,7 +32,7 @@ function SignInForm() {
 		event.preventDefault();
 
 		try {
-			dispatch(emailSignInStart());
+			dispatch(emailSignInStart(email, password));
 
 			resetFormFields();
 		} catch (error) {
