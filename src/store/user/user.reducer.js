@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const INITIAL_STATE = {
+export const USER_INITIAL_STATE = {
 	currentUser: null,
 };
 
 export const userSlice = createSlice({
 	name: 'user', //name spaces actions for us; createSlice not only creates reducers but also actions and action types
-	initialState: INITIAL_STATE,
+	initialState: USER_INITIAL_STATE,
 	reducers: {
 		setCurrentUser(state, action) {
 			state.currentUser = action.payload;
