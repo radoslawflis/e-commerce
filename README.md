@@ -11,11 +11,16 @@ E-commerce web shop is an enterprise level React application deployed to product
 -   Authorization: Set up authentication and user accounts with Firebase and Google Sign In.
 -   Routing: SPA application with React Router
 -   useContext for managing global states of users and products
+-   / Also prepared redux state management with both traditional redux and reduxToolkit: see respective branches
+-   implemented redux-persist for keeping state in local memory
+-   tested redux-thunk and redux-saga for understanding state management of async actions
+-   added redux-logger in development mode to see states in console
+-   tested redux-devtools to display history of  states in plugin window
 -   Styling: CSS converted from SASS to styled-components for solving class names clashes
 
 ## Technologies Used
 
--   Front-end: HTML, CSS, JavaScript, React, React Router
+-   Front-end: HTML, CSS, JavaScript, React, React Router, Redux, Redux Toolkit, Redux-Persist, Redux-Logger, Redux-Thunk, Redux-Saga, Redux DevTools
 -   Back-end: Firebase
 -   Database: Firebase
 -   Styling: Styled-components
