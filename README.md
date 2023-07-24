@@ -24,3 +24,7 @@ E-commerce web shop is an enterprise level React application deployed to product
 -   Back-end: Firebase
 -   Database: Firebase
 -   Styling: Styled-components
+  
+## Why I built the project this way
+
+I wanted to understand state management in React from different perspectives. This is why I have a clear comparison between ContextApi and Redux. I built an app firstly with useContext with just using useState, then useReducer for better control inside contexts. Then I switched to redux but using oldschool with a lot of boilerplate code redux. I understood how actions are being dispatched to reducers based on type. What are selectors. What is reselect library and what is it for. Then I added redux-thunk for managing async actions and developed to redux-saga. Redux-saga is not necessary for this small app. I also added redux-persist to keep state in local memory of the browser. I played with redux devtools that adds to the control over states. Finally I switched everything to redux toolkit that is much of an improvement for reduction of boilerplate code. Basically slice is like a compact type, action and reducer together, very cool. 
