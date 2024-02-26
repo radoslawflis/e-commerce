@@ -6,25 +6,24 @@ import createSagaMiddleware from 'redux-saga';
 
 import { rootSaga } from './root-saga';
 
-// root-reducer (one big reducer)
 import { rootReducer } from './root-reducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
 
 declare global {
-	interface Window {
-		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-	}
-};
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
 type ExtendedPersistConfig = PersistConfig<RootState> & {
-	whitelist: (keyof RootState)[];
+  whitelist: (keyof RootState)[];
 };
 
 const persistConfig: ExtendedPersistConfig = {
-	key: 'root',
-	storage: storage,
-	whitelist: ['cart'],
+  key: 'root',
+  storage,
+  whitelist: ['cart'],
 };
 
 const sagaMiddleware = createSagaMiddleware();
@@ -32,11 +31,11 @@ const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleWares = [
-	process.env.NODE_ENV !== 'production' && logger,
-	sagaMiddleware,
-  ].filter((middleware): middleware is Middleware => Boolean(middleware));
+  process.env.NODE_ENV !== 'production' && logger,
+  sagaMiddleware,
+].filter((middleware): middleware is Middleware => Boolean(middleware));
 
-  const composeEnhancer =
+const composeEnhancer =
   (process.env.NODE_ENV !== 'production' &&
     window &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
@@ -45,9 +44,9 @@ const middleWares = [
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = createStore(
-	persistedReducer,
-	undefined,
-	composedEnhancers
+  persistedReducer,
+  undefined,
+  composedEnhancers
 );
 
 sagaMiddleware.run(rootSaga);
