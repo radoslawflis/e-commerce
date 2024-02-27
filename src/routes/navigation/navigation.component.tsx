@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
@@ -5,9 +6,8 @@ import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
-import { selectCurrentUser } from '../../store/user/user.selector';
 import { selectIsCartOpen } from '../../store/cart/cart.selector';
-
+import { selectCurrentUser } from '../../store/user/user.selector';
 import { signOutStart } from '../../store/user/user.action';
 
 import {
@@ -25,15 +25,17 @@ function Navigation() {
 	const signOutUser = () => dispatch(signOutStart());
 
 	return (
-		<>
+		<Fragment>
 			<NavigationContainer>
 				<LogoContainer to='/'>
 					<CrownLogo className='logo' />
 				</LogoContainer>
 				<NavLinks>
 					<NavLink to='/shop'>SHOP</NavLink>
+					
 					{currentUser ? (
-						<NavLink as='span' onClick={signOutUser}>
+						// <NavLink as='span' onClick={signOutUser}>
+						<NavLink to='/' onClick={signOutUser}>
 							SIGN OUT
 						</NavLink>
 					) : (
@@ -44,7 +46,7 @@ function Navigation() {
 				{isCartOpen && <CartDropdown />}
 			</NavigationContainer>
 			<Outlet />
-		</>
+		</Fragment>
 	);
 }
 

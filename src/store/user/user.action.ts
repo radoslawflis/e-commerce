@@ -70,8 +70,10 @@ export const signUpSuccess = withMatcher((user: User, additionalDetails: Additio
 export const signUpFailed = withMatcher((error: Error): SignUpFailed =>
 	createAction(USER_ACTION_TYPES.SIGN_UP_FAILED, error));
 
-export const signOutStart = withMatcher((): SignOutStart =>
-	createAction(USER_ACTION_TYPES.SIGN_OUT_START));
+	export const signOutStart = withMatcher(
+		(): SignOutStart => createAction(USER_ACTION_TYPES.SIGN_OUT_START)
+	  );
+
 export const signOutSuccess = withMatcher((): SignOutSuccess =>
 	createAction(USER_ACTION_TYPES.SIGN_OUT_SUCCESS));
 export const signOutFailed = withMatcher((error: Error): SignOutFailed =>

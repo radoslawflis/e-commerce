@@ -11,8 +11,12 @@ import {
 
 import { CategoryContainer, CategoryTitle } from './category.styles';
 
+type CategoryRouteParams = {
+	category: string;
+}
+
 function Category() {
-	const { category } = useParams(); //accessing variable from url
+	const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams; //accessing variable from url
 	const categoriesMap = useSelector(selectCategoriesMap);
 	const isLoading = useSelector(selectCategoriesIsLoading);
 	const [products, setProducts] = useState(categoriesMap[category]);
